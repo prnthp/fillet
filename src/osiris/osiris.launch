@@ -6,16 +6,17 @@
     output="screen"
     respawn="true"
   />
-  <node 
-    pkg="rosserial_python" 
-    type="message_info_service.py" 
+  <node
+    pkg="rosserial_python"
+    type="message_info_service.py"
     output="screen"
-    name="rosserial_message_info" 
+    name="rosserial_message_info"
   />
   <node
     pkg="osiris"
-    type="reaper.py"
+    type="reaper_srv.py"
     name="reaper"
+    output="screen"
   />
   <node
     pkg="osiris"
