@@ -1,8 +1,0 @@
-prefix=/home/viki/fillet/install
-
-Name: osiris
-Description: Description of osiris
-Version: 0.0.1
-Cflags: 
-Libs: -L/home/viki/fillet/install/lib 
-Requires: 
