@@ -1,0 +1,7 @@
+set(_CATKIN_CURRENT_PACKAGE "osiris")
+set(osiris_MAINTAINER "Pornthep <prnthp@uw.edu>")
+set(osiris_DEPRECATED "")
+set(osiris_VERSION "0.0.1")
+set(osiris_BUILD_DEPENDS "geometry_msgs" "std_msgs")
+set(osiris_RUN_DEPENDS "rosserial_python")
+set(osiris_BUILDTOOL_DEPENDS "catkin")

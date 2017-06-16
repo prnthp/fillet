@@ -1,0 +1,10 @@
+<launch>
+  <node
+    pkg="rosbag"
+    type="record"
+    name="rosbag_node"
+    args="-o test /noface_pose"
+    output="screen"
+    respawn="true"
+  />
+</launch>

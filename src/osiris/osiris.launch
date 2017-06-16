@@ -1,0 +1,26 @@
+<launch>
+  <node
+    pkg="rosserial_server"
+    type="socket_node"
+    name="socket_node"
+    output="screen"
+    respawn="true"
+  />
+  <node 
+    pkg="rosserial_python" 
+    type="message_info_service.py" 
+    output="screen"
+    name="rosserial_message_info" 
+  />
+  <node
+    pkg="osiris"
+    type="reaper.py"
+    name="reaper"
+  />
+  <node
+    pkg="osiris"
+    type="ganesh.py"
+    name="ganesh"
+    output="screen"
+  />
+</launch>
