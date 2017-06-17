@@ -9,9 +9,9 @@ def handle_reaper(req):
     if req.input == "unityshutdown":
         rospy.logwarn("Reaper: Recieved request to murder rosserial node")
         os.system("rosnode kill /socket_node")
-        return 1
+        return reaper_srvRespose(1)
     else:
-        return 0
+        return reaper_srvRespose(0)
 
 def reaper_server():
     rospy.init_node('reaper_server')

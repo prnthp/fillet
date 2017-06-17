@@ -4,17 +4,21 @@ import rospy
 import os
 import subprocess
 from std_msgs.msg import String
+from osiris.srv import *
 
-def callback(data):
-  if data.data == "recordbegin":
+def handle_ganesh(req):
+  if req.command == "recordbegin":
     rospy.loginfo("Ganesh: Starting rosbag")
     # TODO: Add information to bag filename
-    name = "oculus"
-    topics = "/noface_pose"
+    name = req.filename
+    topics = ""
+    for topic in req.topics:
+        topics += topic + " "
     command = "rosbag record -o " + name + " " + topics
-    dir_save_bagfile = "/home/viki/Record/"
-    robag_proc = subprocess.Popen(command, stdin=subprocess.PIPE, shell=True, cwd=dir_save_bagfile)
-  elif data.data == "recordend":
+    dir_save_bagfile = os.path.expanduser("~") + "/Record/"
+    rosbag_proc = subprocess.Popen(command, stdin=subprocess.PIPE, shell=True, cwd=dir_save_bagfile)
+    return ganesh_srvResponse(1,name)
+  elif req.command == "recordend":
     # http://answers.ros.org/question/10714/start-and-stop-rosbag-within-a-python-script/
     # Holy mother of hacks
     list_cmd = subprocess.Popen("rosnode list", shell=True, stdout=subprocess.PIPE)
@@ -26,12 +30,16 @@ def callback(data):
             os.system("rosnode kill " + str)
             rospy.loginfo("Ganesh: Killed rosbag node: " + str)
     rospy.logwarn("Ganesh: Recording ended")
+    name = ""
+    # TODO: FIX RETURN NAME
+    return ganesh_srvResponse(1,name)
 
-def listener():
-  rospy.init_node('osiris', anonymous=True)
-  rospy.Subscriber("control", String, callback)
+def ganesh_server():
+  rospy.init_node('ganesh_server', anonymous=True)
+  s = rospy.Service('ganesh', ganesh_srv, handle_ganesh)
+  rospy.loginfo("Ganesh: Service started")
 
   rospy.spin()
 
 if __name__ == '__main__':
-  listener()
+  ganesh_server()

@@ -3,9 +3,7 @@ Bishop's ROS Workspace
 
 ## Osiris Package
 ### Ganesh
-Python script that harvests information by invoking rosbag upon a "recordbegin" from the /control topic.
-
-TODO: Convert to service
+Service that harvests information by invoking rosbag upon a "recordbegin" command, takes arguments: command filename [topics]. Giving command "recordend" kills all rosbag nodes.
 
 ### Reaper
 Service that kills and lets roslaunch ressurect /socket_node upon a "unityshutdown" on the input.

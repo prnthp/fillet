@@ -51,3 +51,7 @@ install/
 # Sublime project files
 *.sublime-project
 *.sublime-workspace
+
+# Atom stuff
+*.tags
+*.tags1
