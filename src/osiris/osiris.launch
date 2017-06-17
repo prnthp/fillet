@@ -14,7 +14,7 @@
   />
   <node
     pkg="osiris"
-    type="reaper_srv.py"
+    type="reaper.py"
     name="reaper"
     output="screen"
   />
