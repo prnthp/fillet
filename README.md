@@ -3,15 +3,13 @@ Bishop's ROS Workspace
 
 ## Osiris Package
 ### Ganesh
-Service that harvests information by invoking rosbag upon a *recordbegin* command.
+Service that harvests information by invoking rosbag upon a **recordbegin** command.
 
-Takes arguments: *command* filename [topics].
+Takes arguments: **command** filename [topics].
 
-Valid commands: *recordbegin*, *recordend*
-
-Filename: Any string - will be appended to front of rosbag filename. Directory is ~/Record/.
-
-Topics: Given as array of strings
+* **Commands**: **recordbegin**, **recordend**
+* **Filename**: Any string - will be appended to front of rosbag filename. Directory is ~/Record/.
+* **Topics**: Given as array of strings
 
 ### Reaper
 Service that kills and lets roslaunch resurrect /socket_node upon a "unityshutdown" on the input.

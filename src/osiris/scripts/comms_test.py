@@ -5,6 +5,8 @@ import md5
 from osiris.srv import *
 
 def handle_comms_test(req):
+    rospy.loginfo("Comms Test: Got something")
+    rospy.loginfo(md5.new(req.input).hexdigest())
     return comms_test_srvResponse(md5.new(req.input).hexdigest())
 
 def comms_test_server():

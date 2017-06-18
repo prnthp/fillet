@@ -24,4 +24,10 @@
     name="ganesh"
     output="screen"
   />
+  <node
+    pkg="osiris"
+    type="comms_test.py"
+    name="comms_test"
+    output="screen"
+  />
 </launch>

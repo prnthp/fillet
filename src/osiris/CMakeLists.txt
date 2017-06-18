@@ -59,6 +59,7 @@ add_service_files(
   FILES
   reaper_srv.srv
   ganesh_srv.srv
+  comms_test_srv.srv
 )
 
 ## Generate actions in the 'action' folder
