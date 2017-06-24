@@ -17,8 +17,8 @@ def handle_ganesh(req):
 
     name = req.filename
 
-    topics = ""
-    for topic in req.topics:
+    topics = req.topics.split()
+    for topic in topics:
         topics += topic + " "
 
     command = "rosbag record -o " + name + " " + topics
@@ -43,7 +43,7 @@ def handle_ganesh(req):
     return ganesh_srvResponse(1,name)
 
   else:
-    return ganesh_srvResponse(0,"Uknown Command")
+    return ganesh_srvResponse(0,"Unknown Command")
 
 def ganesh_server():
   rospy.init_node('ganesh_server', anonymous=True)

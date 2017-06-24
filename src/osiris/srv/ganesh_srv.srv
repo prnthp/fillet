@@ -1,6 +1,6 @@
 string command
 string filename
-string[] topics
+string topics
 ---
 int64 success
 string bag_output
