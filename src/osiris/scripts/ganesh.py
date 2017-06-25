@@ -12,15 +12,15 @@ def handle_ganesh(req):
 
   if req.command == "recordbegin":
     rospy.loginfo("Ganesh: Starting rosbag")
-    # TODO: Add try-catch
+    # FIXME: Add try-catch
     # TODO: Add information to bag filename
 
     name = req.filename
 
-    topics = req.topics.split()
-    for topic in topics:
+    inputTopics = req.topics.split()
+    topics = ""
+    for topic in inputTopics:
         topics += topic + " "
-
     command = "rosbag record -o " + name + " " + topics
     dir_save_bagfile = os.path.expanduser("~") + "/Record/"
     rosbag_proc = subprocess.Popen(command, stdin=subprocess.PIPE, shell=True, cwd=dir_save_bagfile)
