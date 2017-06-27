@@ -21,7 +21,7 @@ def handle_ganesh(req):
     topics = ""
     for topic in inputTopics:
         topics += topic + " "
-    command = "rosbag record -o " + name + " " + topics
+    command = "rosbag record -o " + name + " -b 0 -e \"/shimmer_(.*)\" " + topics
     dir_save_bagfile = os.path.expanduser("~") + "/Record/"
     rosbag_proc = subprocess.Popen(command, stdin=subprocess.PIPE, shell=True, cwd=dir_save_bagfile)
     return ganesh_srvResponse(1,name)
