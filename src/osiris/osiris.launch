@@ -30,4 +30,10 @@
     name="comms_test"
     output="screen"
   />
+  <node
+    pkg="osiris"
+    type="reaper_subscriber.py"
+    name="reaper_hellfire"
+    output="screen"
+  />
 </launch>

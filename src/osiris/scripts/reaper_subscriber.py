@@ -9,7 +9,7 @@ def callback(data):
     # Painful way
     # os.system("kill $(ps aux | grep socket_node | grep -v grep | awk '{print $2}')")
     # Correct way
-    rospy.logwarn("Reaper: Recieved request to murder rosserial node")
+    rospy.logwarn("Hellfire: Executing Rosserial Node")
     os.system("rosnode kill /socket_node")
 
 def listener():

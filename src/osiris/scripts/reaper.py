@@ -5,10 +5,15 @@ import os
 from std_msgs.msg import String
 from osiris.srv import *
 
+pub = rospy.Publisher('/control', String, latch=False, queue_size=10)
+
 def handle_reaper(req):
     if req.input == "unityshutdown":
         rospy.logwarn("Reaper: Recieved request to murder rosserial node")
-        os.system("rosnode kill /socket_node")
+        # os.system("rosnode kill /socket_node")
+        # SHITTY HACK
+        # os.system("rostopic pub /control std_msgs/String \"unityshutdown\" -1")
+        pub.publish("unityshutdown");
         return reaper_srvResponse(1)
     else:
         return reaper_srvResponse(0)
