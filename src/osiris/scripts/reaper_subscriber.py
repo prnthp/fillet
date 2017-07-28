@@ -9,8 +9,11 @@ def callback(data):
     # Painful way
     # os.system("kill $(ps aux | grep socket_node | grep -v grep | awk '{print $2}')")
     # Correct way
-    rospy.logwarn("Hellfire: Executing Rosserial Node")
-    os.system("rosnode kill /socket_node")
+    rospy.logwarn("Hellfire: Executing Unity Rosserial Node")
+    os.system("rosnode kill /unity_node")
+  elif data.data == "shimmershutdown":
+    rospy.logwarn("Hellfire: Executing Shimmer Rosserial Node")
+    os.system("rosnode kill /shimmer_node")
 
 def listener():
   rospy.init_node('osiris', anonymous=True)

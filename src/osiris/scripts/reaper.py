@@ -8,12 +8,15 @@ from osiris.srv import *
 pub = rospy.Publisher('/control', String, latch=False, queue_size=10)
 
 def handle_reaper(req):
+    ## Using another subscriber to shutdown due to racing from service blocking call
+    ## (otherwise rosserial will die and publisher/Unity will hang until timeout ~ 10 secs)
     if req.input == "unityshutdown":
         rospy.logwarn("Reaper: Recieved request to murder rosserial node")
-        # os.system("rosnode kill /socket_node")
-        # SHITTY HACK
-        # os.system("rostopic pub /control std_msgs/String \"unityshutdown\" -1")
         pub.publish("unityshutdown");
+        return reaper_srvResponse(1)
+    elif req.input == "shimmershutdown":
+        rospy.logwarn("Reaper: Recieved request to murder rosserial node")
+        pub.publish("shimmershutdown");
         return reaper_srvResponse(1)
     else:
         return reaper_srvResponse(0)

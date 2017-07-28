@@ -2,7 +2,15 @@
   <node
     pkg="rosserial_server"
     type="socket_node"
-    name="socket_node"
+    name="unity_node"
+    output="screen"
+    respawn="true"
+  />
+  <node
+    pkg="rosserial_server"
+    type="socket_node"
+    name="shimmer_node"
+    args="_port:=11412"
     output="screen"
     respawn="true"
   />
