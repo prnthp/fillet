@@ -42,6 +42,32 @@ def handle_ganesh(req):
     rospy.logwarn("Ganesh: Recording ended")
     return ganesh_srvResponse(1,name)
 
+  elif req.command == "recordend_scrap":
+    # TODO: Add try-catch
+    # HACK: http://answers.ros.org/question/10714/start-and-stop-rosbag-within-a-python-script/
+    list_cmd = subprocess.Popen("rosnode list", shell=True, stdout=subprocess.PIPE)
+    list_output = list_cmd.stdout.read()
+    retcode = list_cmd.wait()
+    assert retcode == 0, "List command returned %d" % retcode
+
+    for str in list_output.split("\n"):
+        if (str.startswith("/record")):
+            os.system("rosnode kill " + str)
+            rospy.loginfo("Ganesh: Killed rosbag node: " + str)
+
+    rospy.logwarn("Ganesh: Recording ended")
+
+    cmd = subprocess.Popen("ls -p | grep -v /", shell=True, stdout=subprocess.PIPE)
+    cmd_output = cmd.stdout.read()
+    output_list = cmd_output.split("\n")
+
+    for filename in reversed(output_list):
+        if filename.startswith("subject_"):
+            os.system("mv -f " + filename + " Scrapped")
+            break
+        
+    return ganesh_srvResponse(1,name)
+
   else:
     return ganesh_srvResponse(0,"Unknown Command")
 
