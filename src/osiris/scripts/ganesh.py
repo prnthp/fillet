@@ -10,12 +10,12 @@ def handle_ganesh(req):
 
   global name
 
+  name = req.filename
+
   if req.command == "recordbegin":
     rospy.loginfo("Ganesh: Starting rosbag")
     # FIXME: Add try-catch
     # TODO: Add information to bag filename
-
-    name = req.filename
 
     inputTopics = req.topics.split()
     topics = ""
@@ -43,6 +43,7 @@ def handle_ganesh(req):
     return ganesh_srvResponse(1,name)
 
   elif req.command == "recordend_scrap":
+    # HACK: THIS IS SHITTY
     # TODO: Add try-catch
     # HACK: http://answers.ros.org/question/10714/start-and-stop-rosbag-within-a-python-script/
     list_cmd = subprocess.Popen("rosnode list", shell=True, stdout=subprocess.PIPE)
@@ -57,13 +58,14 @@ def handle_ganesh(req):
 
     rospy.logwarn("Ganesh: Recording ended")
 
-    cmd = subprocess.Popen("ls -p Record | grep -v /", shell=True, stdout=subprocess.PIPE)
+    user_path = os.path.expanduser("~")
+    cmd = subprocess.Popen("ls -p -c " + user_path + "/Record | grep -v /", shell=True, stdout=subprocess.PIPE)
     cmd_output = cmd.stdout.read()
     output_list = cmd_output.split("\n")
 
-    for filename in reversed(output_list):
+    for filename in output_list:
         if filename.startswith("subject_"):
-            os.system("mv -f Record/" + filename + " Record/Scrapped")
+            os.system("mv -f ~/Record/" + filename + " ~/Record/Scrapped/")
             break
 
     return ganesh_srvResponse(1,name)
