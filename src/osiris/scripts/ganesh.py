@@ -57,15 +57,15 @@ def handle_ganesh(req):
 
     rospy.logwarn("Ganesh: Recording ended")
 
-    cmd = subprocess.Popen("ls -p | grep -v /", shell=True, stdout=subprocess.PIPE)
+    cmd = subprocess.Popen("ls -p Record | grep -v /", shell=True, stdout=subprocess.PIPE)
     cmd_output = cmd.stdout.read()
     output_list = cmd_output.split("\n")
 
     for filename in reversed(output_list):
         if filename.startswith("subject_"):
-            os.system("mv -f " + filename + " Scrapped")
+            os.system("mv -f Record/" + filename + " Record/Scrapped")
             break
-        
+
     return ganesh_srvResponse(1,name)
 
   else:
