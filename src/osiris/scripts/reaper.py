@@ -23,6 +23,7 @@ def handle_reaper(req):
 
 def reaper_server():
     rospy.init_node('reaper_server')
+    rospy.on_shutdown(death_blossom)
     s = rospy.Service('reaper', reaper_srv, handle_reaper)
     rospy.loginfo("Reaper: Service started")
     rospy.spin()
@@ -40,6 +41,12 @@ def reaper_server():
 #   rospy.Subscriber("control", String, callback)
 #
 #   rospy.spin()
+
+def death_blossom():
+    # Kills all rosserial nodes
+    rospy.logwarn("Reaper: Clearing the area (killing all rosserial nodes)")
+    os.system("kill $(rosnode info /unity_node | grep 'Pid: ' | grep -Eo '[0-9]{1,}')")
+    os.system("kill $(rosnode info /shimmer_node | grep 'Pid: ' | grep -Eo '[0-9]{1,}')")
 
 if __name__ == '__main__':
   reaper_server()
