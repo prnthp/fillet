@@ -10,10 +10,16 @@ def callback(data):
     # os.system("kill $(ps aux | grep socket_node | grep -v grep | awk '{print $2}')")
     # Correct way
     rospy.logwarn("Hellfire: Executing Unity Rosserial Node")
-    os.system("rosnode kill /unity_node")
+    # os.system("rosnode kill /unity_node")
+
+    # Escalating to force SIGTERM on rosserial socket_node(s)
+    os.system("kill $(rosnode info /unity_node | grep 'Pid: ' | grep -Eo '[0-9]{1,}')")
   elif data.data == "shimmershutdown":
     rospy.logwarn("Hellfire: Executing Shimmer Rosserial Node")
-    os.system("rosnode kill /shimmer_node")
+    # os.system("rosnode kill /shimmer_node")
+
+    # Escalating to force SIGTERM on rosserial socket_node(s)
+    os.system("kill $(rosnode info /shimmer_node | grep 'Pid: ' | grep -Eo '[0-9]{1,}')")
 
 def listener():
   rospy.init_node('osiris', anonymous=True)
