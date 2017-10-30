@@ -45,8 +45,7 @@ def reaper_server():
 def death_blossom():
     # Kills all rosserial nodes
     rospy.logwarn("Reaper: Clearing the area (killing all rosserial nodes)")
-    os.system("kill $(rosnode info /unity_node | grep 'Pid: ' | grep -Eo '[0-9]{1,}')")
-    os.system("kill $(rosnode info /shimmer_node | grep 'Pid: ' | grep -Eo '[0-9]{1,}')")
+    os.system("kill $(ps aux | grep socket_node | grep -v grep | awk '{print $2}')")
 
 if __name__ == '__main__':
   reaper_server()
