@@ -1,4 +1,4 @@
-uid unique_id
+int unique_id
 int frame_count
 float time
 string parent
