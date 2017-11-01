@@ -1,10 +1,10 @@
-uid unique_id
-int frame_count
-float time
+int32 unique_id
+int32 frame_count
+float64 time
 string parent
-int num_poses
+int32 num_poses
 geometry_msgs/Pose[] poses
 bool has_event
 string events
 bool has_values
-float[] values
+float64[] values
