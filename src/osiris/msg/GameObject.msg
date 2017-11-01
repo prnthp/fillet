@@ -1,0 +1,10 @@
+uid unique_id
+int frame_count
+float time
+string parent
+int num_poses
+geometry_msgs/Pose[] poses
+bool has_event
+string events
+bool has_values
+float[] values
