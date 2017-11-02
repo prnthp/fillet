@@ -7,4 +7,4 @@ geometry_msgs/Pose[] poses
 bool has_event
 string events
 bool has_values
-float64[] values
+Values[] values
