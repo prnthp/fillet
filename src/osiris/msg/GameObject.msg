@@ -5,6 +5,6 @@ string parent
 int32 num_poses
 geometry_msgs/Pose[] poses
 bool has_event
-string events
+string[] events
 bool has_values
 Values[] values
