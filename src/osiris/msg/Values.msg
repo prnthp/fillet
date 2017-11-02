@@ -1,2 +1,2 @@
 string name
-double data
+float64 data

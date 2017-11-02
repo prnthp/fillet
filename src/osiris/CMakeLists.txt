@@ -52,8 +52,8 @@ find_package(catkin REQUIRED COMPONENTS
 add_message_files(
   FILES
   Bone.msg
-  GameObject.msg
   Values.msg
+  GameObject.msg
 #   Message1.msg
 #   Message2.msg
 )
