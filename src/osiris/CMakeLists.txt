@@ -53,6 +53,7 @@ add_message_files(
   FILES
   Bone.msg
   GameObject.msg
+  Values.msg
 #   Message1.msg
 #   Message2.msg
 )
