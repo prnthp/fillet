@@ -44,4 +44,10 @@
     name="reaper_hellfire"
     output="screen"
   />
+  <node
+    pkg="osiris"
+    type="talker.py"
+    output="screen"
+    name="pythontalker"
+  />
 </launch>
