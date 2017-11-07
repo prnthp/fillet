@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import rospy
 from osiris.msg import *
-from geometry_msgs import Pose
+from geometry_msgs.msg import Pose
 
 def talker():
     pub = rospy.Publisher('testlisten', GameObject, queue_size=10)
@@ -30,7 +30,7 @@ def talker():
         go.values = []
         go.values.append(Values('weight',10.1))
         go.values.append(Values('height',99.9999990))
-        
+
         pub.publish(go)
         rate.sleep()
 

@@ -19,6 +19,7 @@
     type="message_info_service.py"
     output="screen"
     name="rosserial_message_info"
+    respawn="True"
   />
   <node
     pkg="osiris"
