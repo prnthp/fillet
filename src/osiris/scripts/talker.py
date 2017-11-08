@@ -7,7 +7,11 @@ def talker():
     pub = rospy.Publisher('testlisten', GameObject, queue_size=10)
     rospy.init_node('talker', anonymous=True)
     rate = rospy.Rate(200) # 200 Hz, faster than Unity
+    i = 0.0
     while not rospy.is_shutdown():
+        if i > 5.0:
+            i = 0.0
+        i += 0.1
         go = GameObject()
         go.unique_id = 1
         go.frame_count = 2
@@ -16,7 +20,7 @@ def talker():
         go.num_poses = 5
         go.poses = []
         temp = Pose()
-        temp.position.x = 1
+        temp.position.x = i
         temp.position.y = 2
         temp.position.z = 3
         go.poses.append(temp)
