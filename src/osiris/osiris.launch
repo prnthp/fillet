@@ -51,4 +51,18 @@
     output="screen"
     name="pythontalker"
   />
+  <node
+    pkg="osiris"
+    type="republish.py"
+    output="screen"
+    name="republisher"
+  />
+  <node
+    pkg="rosserial_python"
+    type="serial_node.py"
+    output="screen"
+    name="teensy">
+    <param name="port" value="/dev/ttyS7"/>
+    <param name="baud" value="115200"/>
+  </node>
 </launch>

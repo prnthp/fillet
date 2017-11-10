@@ -3,6 +3,8 @@ build/
 devel/
 install/
 
+src/CMakeLists.txt
+
 *.*.save
 
 # QtCreator files
