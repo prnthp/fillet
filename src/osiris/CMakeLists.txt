@@ -54,6 +54,7 @@ add_message_files(
   Bone.msg
   Values.msg
   GameObject.msg
+  Shimmer.msg
 #   Message1.msg
 #   Message2.msg
 )
