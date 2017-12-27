@@ -1,3 +1,3 @@
-int32 idx
-float64 time
-float64 data
+int32 shimmer_index
+float64 shimmer_time
+float64 shimmer_data
