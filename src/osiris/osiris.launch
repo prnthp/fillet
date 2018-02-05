@@ -65,4 +65,10 @@
     <param name="port" value="/dev/ttyS7"/>
     <param name="baud" value="115200"/>
   </node>
+  <node
+    pkg="osiris"
+    type="shimmer_republish.py"
+    output="screen"
+    name="shimmer_republisher"
+  />
 </launch>
