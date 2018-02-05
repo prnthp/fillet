@@ -15,11 +15,10 @@ def callback(shimmer_data):
 def shimmer_republish():
     rospy.init_node('shimmer_republisher')
     rospy.Subscriber('shimmer_gsr_cal', Shimmer, callback)
-    rospy.Spin()
+    rospy.spin()
 
-if __name__ == '__main__'
+if __name__ == '__main__':
     try:
         shimmer_republish()
     except rospy.ROSInterruptException:
         pass
-
